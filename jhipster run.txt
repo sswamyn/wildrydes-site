@@ -2,8 +2,8 @@
 docker volume create my-vol
 
 
-
 docker run -d --name jhip -v swamy-vol:/home/jhipster/app -P sswamyn/jhipster1
+docker run -d --name jhip -v /home/repo/repo/sswamyn/wildrydes-site/jhip:/home/jhipster/app -P sswamyn/jhipster1
 
 
 docker exec -it <container name> /bin/bash

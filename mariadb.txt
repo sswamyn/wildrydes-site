@@ -1,0 +1,10 @@
+docker run -p 127.0.0.1:3306:3306  --name some-mariadb -e MARIADB_ROOT_PASSWORD=my-secret-pw -d mariadb:tag
+
+
+$ docker network create some-network # Create the network
+$ docker run --net some-network --name some-mariadb -e MARIADB_ROOT_PASSWORD=my-secret-pw -d mariadb:tag
+
+docker run --name swamy-mariadb -v /home/springboot/datadir:/var/lib/mysql -e
+MARIADB_ROOT_PASSWORD=my-secret-pw -d mariadb:10.5.10 
+
+docker pull mariadb:10.5.10 

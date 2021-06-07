@@ -1,0 +1,28 @@
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x${NAME}_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list" wget -nv
+
+
+
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x${NAME}_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
+wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/x${NAME}_${VERSION_ID}/Release.key -O Release.key
+
+sudo apt-key add - < Release.key
+
+sudo apt-get update -qq
+##############
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+
+sudo apt-get update
+
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolvconf/resolv.conf.d/base > /dev/null
+#############
+sudo apt-get -qq -y install podman
+
+sudo mkdir -p /etc/containers
+
+echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | sudo tee /etc/containers/registries.conf
+
+
+
+mount -t tmpfs cgroup_root /sys/fs/cgroup
+mkdir /sys/fs/cgroup/cpuset
+mount -t cgroup cpuset -o cpuset /sys/fs/cgroup/cpuset/

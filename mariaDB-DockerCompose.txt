@@ -1,0 +1,20 @@
+# Use root/example as user/password credentials
+# docker-compose -f stack.yml up
+# docker run --name swamy-mariadb -p 3306:3306 -v /home/springboot/datadir:/var/lib/mysql -e MARIADB_ROOT_PASSWORD=my-secret-pw -d mariadb:10.5.10 
+
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+

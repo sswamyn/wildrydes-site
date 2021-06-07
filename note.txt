@@ -1,0 +1,42 @@
+
+#
+aws dynamodb create-table --table-name ProductCatalog --attribute-definitions \
+AttributeName=Id,AttributeType=N --key-schema \
+AttributeName=Id,KeyType=HASH \
+--provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+
+### Output 
+C:\home\awsDynamoBD>aws dynamodb create-table --table-name ProductCatalog --attribute-definitions AttributeName=Id,AttributeType=N --key-schema AttributeName=Id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+{
+    "TableDescription": {
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "Id",
+                "AttributeType": "N"
+            }
+        ],
+        "TableName": "ProductCatalog",
+        "KeySchema": [
+            {
+                "AttributeName": "Id",
+                "KeyType": "HASH"
+            }
+        ],
+        "TableStatus": "CREATING",
+        "CreationDateTime": 1621735504.209,
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0,
+            "ReadCapacityUnits": 5,
+            "WriteCapacityUnits": 5
+        },
+        "TableSizeBytes": 0,
+        "ItemCount": 0,
+        "TableArn": "arn:aws:dynamodb:us-east-1:011136480113:table/ProductCatalog",
+        "TableId": "b611fe3d-5393-46fc-bde9-23d33a26fe99"
+    }
+}
+### /Output
+
+#Command to query Dynamodb from EC2 command line - just remember replace the region with the correct one for your database
+aws dynamodb get-item --table-name ProductCatalog --region eu-east-1  --key '{"Id":{"N":"205"}}'
+
